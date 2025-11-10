@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+# ✅ Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and beautiful todo list application to help you organize your daily tasks.
 
-Currently, two official plugins are available:
+## 🌟 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✨ **Add Tasks** - Quickly add new todos with a simple input
+- ✅ **Mark Complete** - Check off tasks when you're done
+- 🗑️ **Delete Tasks** - Remove tasks you no longer need
+- 🌓 **Dark Mode** - Switch between light and dark themes
+- 💾 **Auto-Save** - Your tasks are automatically saved in your browser
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Add a Task**
+   - Type your task in the input box
+   - Click "Add" or press Enter
+   - Your task appears in the Active list
 
-## Expanding the ESLint configuration
+2. **Complete a Task**
+   - Click the checkbox next to any task
+   - Completed tasks move to the Completed section
+   - Click again to mark as incomplete
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. **Delete a Task**
+   - Hover over any task
+   - Click the red trash icon to remove it
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+4. **Switch Theme**
+   - Click the sun/moon icon in the top right
+   - Choose your preferred theme
+   - Your choice is remembered for next time
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 💡 Tips
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Your tasks are saved automatically - no need to worry about losing them
+- Completed tasks are kept separate so you can see your progress
+- The app works entirely in your browser - no account needed
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📱 Works Everywhere
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Use Todo App on any device:
+- 💻 Desktop computers
+- 📱 Mobile phones
+- 🖥️ Tablets
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Built With
+
+- React - For a smooth, interactive experience
+- TypeScript - For reliable code
+- Tailwind CSS - For beautiful design
+
+---
+
+**Made by John Lester** • [My Github](https://github.com/johnlester-0369)
