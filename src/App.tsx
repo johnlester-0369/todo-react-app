@@ -1,34 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+import TodoList from './components/common/TodoList'
+import { type Todo } from './components/common/TodoItem'
+import { useTheme } from './hooks/useTheme'
+
+const STORAGE_KEY = 'todos'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { theme, toggleTheme } = useTheme()
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    // Load todos from localStorage on mount
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      return stored ? JSON.parse(stored) : []
+    } catch (error) {
+      console.error('Failed to load todos:', error)
+      return []
+    }
+  })
+
+  // Save todos to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    } catch (error) {
+      console.error('Failed to save todos:', error)
+    }
+  }, [todos])
+
+  const handleAddTodo = (text: string) => {
+    const newTodo: Todo = {
+      id: crypto.randomUUID(),
+      text,
+      completed: false,
+      createdAt: Date.now(),
+    }
+    setTodos((prev) => [newTodo, ...prev])
+  }
+
+  const handleToggleTodo = (id: string) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    )
+  }
+
+  const handleDeleteTodo = (id: string) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id))
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex min-h-screen flex-col">
+      <Header onThemeToggle={toggleTheme} currentTheme={theme} />
+      
+      <main className="flex-1 py-8">
+        <div className="mx-auto max-w-4xl px-4">
+          <TodoList
+            todos={todos}
+            onAddTodo={handleAddTodo}
+            onToggleTodo={handleToggleTodo}
+            onDeleteTodo={handleDeleteTodo}
+          />
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   )
 }
 
