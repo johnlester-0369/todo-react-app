@@ -5,6 +5,35 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>todo-react-app</title>
+    
+    <!-- Theme initialization script - MUST run before body renders -->
+    <script>
+      // Immediately invoked to prevent flash of incorrect theme
+      ;(function () {
+        try {
+          const stored = localStorage.getItem('theme')
+          const getSystemTheme = function () {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+          }
+          let appliedTheme = 'light'
+          // If valid theme exists, use it
+          if (stored === 'light' || stored === 'dark') {
+            appliedTheme = stored
+          } else {
+            // No theme set - detect system preference and save it
+            appliedTheme = getSystemTheme()
+            localStorage.setItem('theme', appliedTheme)
+          }
+          if (appliedTheme === 'dark') {
+            document.documentElement.classList.add('dark')
+          }
+        } catch (e) {
+          console.error('Failed to initialize theme:', e)
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

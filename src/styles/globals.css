@@ -61,25 +61,6 @@
     background-color: rgb(var(--color-primary) / 0.3);
     color: rgb(var(--color-on-primary) / 1);
   }
-  /* Smooth transitions for theme changes - optimized selectors */
-  html,
-  body,
-  .card {
-    transition:
-      background-color 0.3s ease,
-      border-color 0.3s ease,
-      color 0.3s ease;
-  }
-  /* Button and link transitions */
-  a,
-  button {
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease,
-      color 0.2s ease,
-      transform 0.2s ease,
-      opacity 0.2s ease;
-  }
 }
 /* -----------------------------------------------------------
    Components Layer: Reusable Card Component & Custom Fonts
